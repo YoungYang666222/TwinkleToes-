@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loyalty Rewards | Nail Spa Hub</title>
+    <link rel="stylesheet" href="Styles.css"> 
+    <style>
+        /* ====================================
+           REWARDS PAGE SPECIFIC STYLES
+           ==================================== */
+        
+        /* Using the same color variables defined in your original style.css */
+        :root {
+           --primary-color: #f378d3; 
+            --secondary-color: #3f3e5e; 
+            --background-color: #f0f0f5; 
+            --card-background: #ffffff; 
+            --text-dark: #333333;
+            --text-light: #f9f9f9;
+            --border-color: #dddddd;
+            --accent-gold: #FFD700; /* For point emphasis */
+            --accent-bronze: #CD7F32;
+            --accent-silver: #C0C0C0;
+            --footer-bg: #333333; /* Dark background for footer */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Reusing Header and Footer styles */
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            margin-left: 20px;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+            color: white;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Rewards Wrapper */
+        .rewards-wrapper {
+            flex-grow: 1;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .rewards-wrapper h2 {
+            font-size: 2.5em;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        /* Points Balance Section */
+        .balance-card {
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .balance-card h3 {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .points-total {
+            font-size: 4em;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            line-height: 1;
+        }
+        
+        .points-total span {
+            font-size: 0.5em;
+            color: var(--secondary-color);
+            font-weight: 400;
+        }
+
+        .balance-card p {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+        
+        /* Reward Tiers Section */
+        .tiers-section h3, .redemption-section h3 {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .tier-card {
+            background-color: var(--card-background);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .tier-card.current {
+            background-color: #fff8e1; /* Light yellow background for current tier */
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .tier-card h4 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .tier-card.bronze h4 { color: var(--accent-bronze); }
+        .tier-card.silver h4 { color: var(--accent-silver); }
+        .tier-card.gold h4 { color: var(--accent-gold); }
+
+        .tier-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+            text-align: left;
+        }
+        
+        .tier-card ul li {
+            padding: 5px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.95em;
+        }
+        
+        /* Redemption Options */
+        .redemption-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .reward-option {
+            background-color: var(--background-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .reward-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reward-option h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .reward-cost {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: var(--text-dark);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .btn-redeem {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-redeem:hover {
+            background-color: #d82e4e;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .balance-card, .tiers-section, .redemption-section {
+                padding: 15px;
+            }
+            .points-total {
+                font-size: 3em;
+            }
+            .rewards-wrapper h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>TwinkleToes & Tips</h1>
+        <nav class="nav-links">
+            <a href="AboutUs.html">About Us</a>
+            <a href="Services.html">Services</a>
+            <a href="Booking.html">Booking</a>
+            <a href="Login.html">Logout</a> 
+        </nav>
+    </header>
+
+    <main class="rewards-wrapper">
+        <h2>💖 Loyalty Rewards Program</h2>
+        
+        <section class="balance-card">
+            <h3>Your Current Points Balance</h3>
+            <div class="points-total">
+                <span id="pointsTotalDisplay">450</span> <span>POINTS</span>
+            </div>
+            
+            <p id="progressMessage" style="font-weight: 600; color: var(--secondary-color); margin-bottom: 5px;">
+                You are on the Bronze Tier.
+            </p>
+            <p id="requiredPointsMessage" style="color: var(--primary-color); font-size: 1.2em;">
+                You need <strong>550 more points</strong> to reach the Silver Tier (1,000 Points total).
+            </p>
+
+            <div style="height: 10px; background: #ddd; border-radius: 5px; margin-top: 20px; overflow: hidden;">
+                <div id="progressBar" style="width: 45%; height: 100%; background-color: var(--primary-color);"></div>
+            </div>
+        </section>
+
+        <section class="tiers-section">
+            <h3>✨ Membership Tiers & Benefits</h3>
+            <div class="tiers-grid">
+                
+                <div class="tier-card bronze current">
+                    <h4>Bronze Tier</h4>
+                    <p>Current Status</p>
+                    <ul>
+                        <li><span style="color:var(--primary-color);">✔</span> 5% off all services</li>
+                        <li><span style="color:var(--primary-color);">✔</span> Birthday discount voucher</li>
+                        <li><span style="color:var(--primary-color);">✔</span> Priority booking access</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card silver">
+                    <h4>Silver Tier</h4>
+                    <p>Requires 1,000 Points</p>
+                    <ul>
+                        <li><span style="color:var(--primary-color);">✔</span> **10%** off all services</li>
+                        <li><span style="color:var(--primary-color);">✔</span> Free upgrade to deluxe treatment once/year</li>
+                        <li><span style="color:var(--primary-color);">✔</span> Exclusive early access to new colors</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card gold">
+                    <h4>Gold Tier</h4>
+                    <p>Requires 2,500 Points</p>
+                    <ul>
+                        <li><span style="color:var(--primary-color);">✔</span> **15%** off all services</li>
+                        <li><span style="color:var(--primary-color);">✔</span> Complimentary monthly nail repair</li>
+                        <li><span style="color:var(--primary-color);">✔</span> Free bottle of premium top coat</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="redemption-section">
+            <h3>💰 Redeem Your Points</h3>
+            <div class="redemption-grid">
+                
+                <div class="reward-option">
+                    <h4>$5 Off Any Service</h4>
+                    <span class="reward-cost">500 Points</span>
+                    <p>A quick discount applied instantly at checkout.</p>
+                    <a href="#" class="btn-redeem" data-reward-id="5_off">Redeem Now</a>
+                </div>
+
+                <div class="reward-option">
+                    <h4>Free Hand Scrub</h4>
+                    <span class="reward-cost">800 Points</span>
+                    <p>Add a complimentary exfoliating hand scrub to your next manicure.</p>
+                    <a href="#" class="btn-redeem" data-reward-id="free_scrub">Redeem Now</a>
+                </div>
+                
+                <div class="reward-option">
+                    <h4>Gel Removal Waiver</h4>
+                    <span class="reward-cost">1,200 Points</span>
+                    <p>Receive a free removal service for your Gel or Dip Powder nails.</p>
+                    <a href="#" class="btn-redeem" data-reward-id="gel_removal">Redeem Now</a>
+                </div>
+
+                <div class="reward-option">
+                    <h4>$15 Off Deluxe Pedi</h4>
+                    <span class="reward-cost">1,500 Points</span>
+                    <p>Save big on our most luxurious and relaxing pedicure service.</p>
+                    <a href="#" class="btn-redeem" data-reward-id="15_off_pedi">Redeem Now</a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <p>Contact us for exclusive nail care deals and appointment assistance.</p>
+            <div class="social-media">
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/facebook-new.png" alt="Facebook"/></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/twitter.png" alt="Twitter" /></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram"/></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/linkedin.png" alt="LinkedIn"/></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; TwinkleToes & Tips</p>
+        </div>
+    </footer>
+
+    <script src="script3.js"></script> 
+
+</body>
+</html>

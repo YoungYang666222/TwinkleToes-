@@ -1,0 +1,364 @@
+/*
+====================================
+1. Global Styles & Typography
+====================================
+*/
+
+:root {
+   --primary-color: #f378d3;  /* A vibrant pink/red for buttons and highlights (Nail theme) */
+    --secondary-color: #3f3e5e; /* Darker color for text/background contrast */
+    --background-color: #f0f0f5; /* Light, subtle background */
+    --card-background: #ffffff; /* White background for the card */
+    --text-dark: #333333;
+    --text-light: #f9f9f9;
+    --error-color: #e74c3c;
+    --border-color: #dddddd;
+    --footer-bg: #333333; /* Dark background for footer */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+h2, h3 {
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-family: 'Playfair Display', serif;
+
+}
+
+a:hover {
+    color: var(--secondary-color);
+
+}
+
+/*
+====================================
+2. Login Wrapper & Card Layout
+====================================
+*/
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height for centering */
+    padding: 20px;
+}
+
+.login-card {
+    display: flex;
+    width: 100%;
+    max-width: 900px; /* Max width for the entire card */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures inner borders/shadows don't spill */
+    background-color: var(--card-background);
+}
+
+/*
+====================================
+3. Left Info Panel (Styling the 'Welcome Back' side)
+====================================
+*/
+
+.login-info {
+    flex: 1;
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+}
+
+
+.login-info h2 {
+    font-size: 2.2em;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.login-info p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+
+/*
+====================================
+4. Right Form Panel (Styling the Login Form side)
+====================================
+*/
+
+.login-form {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h3 {
+    font-size: 1.5em;
+    color: var(--secondary-color);
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+/* Form Elements */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--secondary-color);
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"],
+#resetEmail {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus,
+#resetEmail:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(247, 56, 89, 0.2); /* Light pink glow */
+    outline: none;
+}
+
+/* Button Styling */
+
+.btn-login,
+.modal-content button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 10px rgba(247, 56, 89, 0.4);
+}
+
+.btn-login:hover,
+.modal-content button:hover {
+    background-color: #d82e4e; /* Slightly darker on hover */
+    transform: translateY(-1px);
+}
+
+.btn-login:active,
+.modal-content button:active {
+    transform: translateY(0);
+}
+
+.forgot {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+.error {
+    color: var(--error-color);
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/*
+====================================
+5. Modal (Forgot Password) Styles
+====================================
+*/
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px; /* Control max width of the modal */
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.modal-content h3 {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+#resetEmail {
+    margin-bottom: 15px;
+}
+
+.modal-content button {
+    margin-top: 0;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--error-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/*
+====================================
+6. Footer Styles
+====================================
+*/
+
+footer {
+    background-color: var(--footer-bg);
+    color: var(--text-light);
+    padding: 40px 20px 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-media a img {
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.social-media a:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.footer-bottom {
+    padding-top: 20px;
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+/*
+====================================
+7. Responsiveness
+====================================
+*/
+
+@media (max-width: 768px) {
+    .login-wrapper {
+        align-items: flex-start; /* Align to top on small screens */
+        padding: 40px 20px;
+    }
+
+    .login-card {
+        flex-direction: column; /* Stacks the info panel and form */
+        max-width: 450px; /* Keeps card manageable */
+    }
+
+    .login-info {
+        padding: 30px;
+        text-align: center;
+        /* Make the top info panel visually distinct */
+        border-bottom: 4px solid var(--secondary-color);
+        border-radius: 12px 12px 0 0;
+    }
+
+    .login-info h2 {
+        font-size: 1.8em;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .login-form {
+        padding: 30px;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .footer-content {
+        padding-top: 10px;
+    }
+}
