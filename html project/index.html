@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+
+<section class="login-wrapper">
+     
+    <div class="login-card">
+
+        <!-- Left Info Panel -->
+        <div class="login-info">
+             <h2>Welcome Back to TwinkleToes & Tips</h2>
+            <p>
+                Sign in to manage your appointments and access exclusive nail services.
+            </p>
+        </div>
+
+        <!-- Right Form Panel -->
+        <div class="login-form">
+            <h3>Customer Login</h3>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    Sign In
+                </button>
+
+                <p class="forgot">
+                    <a href="#" onclick="openForgotPassword()">Forgot password?</a>
+                </p>
+
+                <p id="error" class="error"></p>
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Forgot Password Modal -->
+<div id="forgotModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeForgotPassword()">&times;</span>
+        <h3>Reset Password</h3>
+        <p>Enter your email to reset your password:</p>
+        <input type="email" id="resetEmail" placeholder="you@example.com">
+        <button onclick="sendReset()">Send Reset Link</button>
+    </div>
+</div>
+  <footer id="contact">
+        <div class="footer-content">
+            <p>Contact us for exclusive nail care deals and appointment assistance.</p>
+            <div class="social-media">
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/facebook-new.png" alt="Facebook"/></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/twitter.png" alt="Twitter" /></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram"/></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/linkedin.png" alt="LinkedIn"/></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; TwinkleToes & Tips</p>
+        </div>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>
