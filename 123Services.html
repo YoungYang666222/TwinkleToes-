@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | TwinkleToes & Tips</title>
+    <title>Our Services | Nail Spa Hub</title>
+    <link rel="stylesheet" href="Styles.css"> 
+    <style>
+        /* ====================================
+           SERVICES PAGE SPECIFIC STYLES
+           ==================================== */
+        
+        /* Using the same color variables defined in your original style.css */
+        :root {
+           --primary-color: #f378d3; 
+            --secondary-color: #3f3e5e; 
+            --background-color: #f0f0f5; 
+            --card-background: #ffffff; 
+            --text-dark: #333333;
+            --text-light: #f9f9f9;
+            --border-color: #dddddd;
+            --accent-green: #2ecc71; 
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Reusing Header and Footer from Dashboard/Login */
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin: 0;
+           font-family: 'Playfair Display', serif;
+
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            margin-left: 20px;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            font-family: 'Playfair Display', serif;
+
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+            color: white;
+            font-family: 'Playfair Display', serif;
+
+        }
+
+        /* Main Content Area */
+        .services-main {
+            flex-grow: 1; /* Pushes footer to the bottom */
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .services-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519302606554-20a221f73b88?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 80px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .services-hero h2 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+
+            color: var(--text-light); /* Override default dark color */
+        }
+
+        .services-hero p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Service Category Section */
+        .service-category {
+            margin-bottom: 50px;
+        }
+
+        .service-category h3 {
+            font-size: 2.2em;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block; /* Makes border-bottom only as wide as text */
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Individual Service Card */
+        .service-card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column; /* Ensure content stacks */
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 350px; /* Fixed height for images */
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover img {
+            transform: scale(1.03); /* Slight zoom on hover */
+        }
+
+        .service-card-content {
+            padding: 25px;
+            flex-grow: 1; /* Makes content area fill remaining space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card-content h4 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .service-card-content p {
+            font-size: 1em;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1; /* Pushes button to bottom */
+        }
+
+        .service-card-price {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .btn-book {
+            display: block; /* Make button full width */
+            width: 100%;
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-book:hover {
+            background-color: #d82e4e; /* Slightly darker pink */
+        }
+        
+        /* Reusing Footer from Dashboard/Login */
+        footer {
+            background-color: var(--footer-bg, #333333); /* Fallback if not defined globally */
+            color: var(--text-light);
+            padding: 40px 20px 20px;
+            text-align: center;
+            margin-top: 50px; /* Space above footer */
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-media a img {
+            width: 30px;
+            height: 30px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-media a:hover img {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .services-hero {
+                padding: 60px 20px;
+            }
+            .services-hero h2 {
+                font-size: 2.2em;
+            }
+            .services-hero p {
+                font-size: 1em;
+            }
+            .service-category h3 {
+                font-size: 1.8em;
+            }
+            .services-grid {
+                grid-template-columns: 1fr; /* Stack cards on very small screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                padding: 15px 10px;
+            }
+            .header h1 {
+                margin-bottom: 10px;
+            }
+            .nav-links a {
+                margin: 0 8px;
+                font-size: 0.9em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>TwinkleToes & Tips</h1>
+        <nav class="nav-links">
+            <a href="AboutUs.html">About Us</a>
+            <a href="Services.html">Services</a>
+            <a href="Booking.html">Booking</a>
+            <a href="index.html">Logout</a> 
+        </nav>
+    </header>
+
+    <main class="services-main">
+        <section class="services-hero">
+            <h2>Our Exquisite Nail Services</h2>
+            <p>Indulge in a world of beauty and relaxation. From classic treatments to the latest trends, our skilled technicians are here to perfect your nails.</p>
+        </section>
+
+        <section class="service-category">
+            <h3>Manicures</h3>
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <img src="p1.jpg" alt="Classic Manicure">
+                    <div class="service-card-content">
+                        <h4>Classic Manicure</h4>
+                        <p>A traditional treatment including shaping, cuticle care, a relaxing hand massage, and polish application.</p>
+                        <span class="service-card-price">RM 128</span>
+                        <a href="Booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="p2.jpeg" alt="Gel Manicure">
+                    <div class="service-card-content">
+                        <h4>Gel Manicure</h4>
+                        <p>Enjoy long-lasting, chip-free color with our durable gel polish, cured under LED light for a perfect finish.</p>
+                        <span class="service-card-price">RM 188</span>
+                        <a href="Booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="p3.jpg" alt="Dip Powder Nails">
+                    <div class="service-card-content">
+                        <h4>Dip Powder Nails</h4>
+                        <p>A lightweight and durable nail enhancement using colored powder dipped over a bonding base. Provides a strong, natural finish without UV light, lasting longer than traditional polish.</p>
+                        <span class="service-card-price">RM 228</span>
+                        <a href="Booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="service-category">
+            <h3>Pedicures</h3>
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <img src="p4.webp" alt="Spa Pedicure">
+                    <div class="service-card-content">
+                        <h4>Spa Pedicure</h4>
+                        <p>Relax with a foot soak, exfoliation, callus removal, massage, and expert polish application.</p>
+                        <span class="service-card-price">RM 210</span>
+                        <a href="Booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="p5.webp" alt="Deluxe Pedicure">
+                    <div class="service-card-content">
+                        <h4>Deluxe Pedicure</h4>
+                        <p>An upgraded pedicure experience featuring extended exfoliation, hydrating masks or scrubs, hot towel wrap, deep massage, and premium polish for ultimate relaxation and foot rejuvenation.</p>
+                        <span class="service-card-price">RM 315</span>
+                        <a href="Booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="p6.jpg" alt="Paraffin Pedicure">
+                    <div class="service-card-content">
+                        <h4>Paraffin Pedicure</h4>
+                        <p>A moisturizing pedicure that includes a warm paraffin wax treatment to soften dry skin, improve circulation, and relieve tired feet. Ideal for clients with cracked heels or dry skin.</p>
+                        <span class="service-card-price">Starts at RM 240</span>
+                        <a href="Booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="service-category">
+            <h3>Specialty & Add-ons</h3>
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <img src="p7.jpg" alt="Nail Art Design">
+                    <div class="service-card-content">
+                        <h4>Custom Nail Art</h4>
+                        <p>Express your unique style with intricate designs, decals, and hand-painted art.</p>
+                        <span class="service-card-price">Starts at RM 88</span>
+                        <a href="Booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="p8.jpeg" alt="Acrylic Full Set">
+                    <div class="service-card-content">
+                        <h4>Acrylic Full Set</h4>
+                        <p>A full nail enhancement service using acrylic powder and liquid to extend and strengthen natural nails. Includes shaping, buffing, and polish or nail art for a bold, long-lasting look.</p>
+                        <span class="service-card-price">RM 288</span>
+                        <a href="Booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="p9.png" alt="Nail Repair">
+                    <div class="service-card-content">
+                        <h4>Nail Repair</h4>
+                        <p>A corrective service to fix broken, cracked, or damaged nails. Restores nail strength and appearance using professional techniques for a seamless and natural finish.</p>
+                        <span class="service-card-price">Starts at RM 48</span>
+                        <a href="Booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <p>Contact us for exclusive nail care deals and appointment assistance.</p>
+            <div class="social-media">
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/facebook-new.png" alt="Facebook"/></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/twitter.png" alt="Twitter" /></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram"/></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/30/ffffff/linkedin.png" alt="LinkedIn"/></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; TwinkleToes & Tips</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
