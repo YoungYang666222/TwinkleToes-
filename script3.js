@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Reward Definitions (Must match the costs in Rewards.html) ---
     const rewards = {
-        '5_off': { cost: 500, description: '$5 Off Any Service' },
+        '5_off': { cost: 500, description: 'RM 5 Off Any Service' },
         'free_scrub': { cost: 800, description: 'Free Hand Scrub' },
         'gel_removal': { cost: 1200, description: 'Gel Removal Waiver' },
-        '15_off_pedi': { cost: 1500, description: '$15 Off Deluxe Pedi' }
+        '15_off_pedi': { cost: 1500, description: 'RM 15 Off Deluxe Pedi' }
     };
 
     // --- Event Listener for Redemption Buttons ---
@@ -94,3 +94,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
